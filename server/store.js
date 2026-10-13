@@ -35,7 +35,9 @@ export function createStore(filePath) {
     try {
       const record = JSON.parse(text);
       if (record.schemaVersion !== 1 || !Number.isSafeInteger(record.revision) || record.revision < 0) throw new Error();
-      return {...record, state: validateState(record.state)};
+      const normalized = {...record, state: validateState(record.state)};
+      if (record.state.roundDates === undefined || record.state.results === undefined) await atomicWrite(normalized);
+      return normalized;
     } catch {
       throw new StoreError('The competition JSON file is invalid. Restore a valid backup; it has not been overwritten.', 500);
     }

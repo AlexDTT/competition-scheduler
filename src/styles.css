@@ -27,3 +27,24 @@
   .coordinate-input { @apply mt-1 w-full rounded-md border border-line px-2 py-1 text-[11px] text-muted; }
   .coordinate-input[aria-invalid='true'] { @apply border-red-300 bg-red-50; }
 }
+
+.competition-calendar {
+  --fc-border-color: var(--color-line);
+  --fc-button-bg-color: var(--color-ink);
+  --fc-button-border-color: var(--color-ink);
+  --fc-button-hover-bg-color: #304739;
+  --fc-button-hover-border-color: #304739;
+  --fc-button-active-bg-color: #416c34;
+  --fc-button-active-border-color: #416c34;
+  --fc-today-bg-color: #f0f6df;
+  font-size: 11px;
+}
+.competition-calendar .fc-toolbar-title {font-family: var(--font-display); font-size: 17px;}
+.competition-calendar .fc-button {font-size: 10px;}
+.competition-calendar .fc-event {cursor: pointer; font-size: 10px;}
+.competition-calendar .fc-event-title {white-space: normal; overflow-wrap: anywhere;}
+.competition-calendar .fc-daygrid-day-number {padding: 6px;}
+@media (max-width: 680px) {
+  .competition-calendar .fc-header-toolbar {flex-wrap: wrap; justify-content: center; gap: 10px;}
+  .competition-calendar .fc-toolbar-title {font-size: 15px;}
+}

@@ -1,3 +1,5 @@
+import {defaultRoundDates, withKickoffs} from './calendar.js';
+
 export function defaults() {
   const names = ['Atlas', 'Harbor', 'Summit', 'Comets', 'Forest', 'Phoenix'];
   return {
@@ -5,6 +7,10 @@ export function defaults() {
     unavailable: Array.from({length: 6}, () => Array(5).fill(false)),
     resolve: false,
     optimized: false,
+    roundDates: defaultRoundDates(),
+    matchDates: {},
+    makeupDates: {},
+    results: {},
   };
 }
 
@@ -35,13 +41,16 @@ export function validCoordinates(teams) {
 }
 
 // Fifteen match orientations produce only 2^15 candidates, so exact search is practical.
-export function orientations(teams) {
+export function orientations(teams, results = {}) {
   const matches = fixtures();
   const costs = matches.map(match => 2 * distance(teams[match.a], teams[match.b]));
   const total = costs.reduce((sum, cost) => sum + cost, 0);
   let baseline = null;
   let best = null;
   for (let mask = 0; mask < 32768; mask++) {
+    // A completed game keeps its real home/away assignment when optimizing remaining fixtures.
+    if (matches.some(match => results[match.id] &&
+        results[match.id].homeTeam !== ((mask >> match.id) & 1 ? match.b : match.a))) continue;
     const homeCounts = Array(6).fill(0);
     matches.forEach((match, index) => homeCounts[(mask >> index) & 1 ? match.b : match.a]++);
     if (homeCounts.some(count => count < 2 || count > 3)) continue;
@@ -102,11 +111,11 @@ export function schedule(state, orientation) {
   const affected = matches.filter(match => match.conflicts.length);
   const original = Array.from({length: 5}, (_, round) => matches.filter(match =>
     match.round === round && (!state.resolve || !match.conflicts.length)));
-  return {
+  return withKickoffs(state, {
     matches, original,
     makeup: state.resolve ? makeupRounds(affected) : [],
     affected: affected.length,
     unresolved: state.resolve ? 0 : affected.length,
     postponed: state.resolve ? affected.length : 0,
-  };
+  });
 }
