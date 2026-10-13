@@ -1,17 +1,14 @@
 <!doctype html>
 <html lang="en">
-<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#172522"><title>Roundhouse · Competition planner</title><meta name="description" content="Plan a six-team competition, flag availability conflicts, and balance travel."><link rel="stylesheet" href="style.css"></head>
-<body>
-<header class="masthead"><a class="brand" href="./"><span class="brand-icon">↗</span> roundhouse<span class="brand-sub">COMPETITION PLANNER</span></a><span class="local-tag"><i></i> Saved on this device</span></header>
-<main>
-<section class="hero"><div><p class="eyebrow">SIX TEAMS. EVERY MATCHUP.</p><h1>A fair fixture.<br>A smoother season.</h1><p class="intro">Build your round robin, spot scheduling clashes,<br class="desktop"> and keep every team in the game.</p></div><div class="hero-art" aria-hidden="true"><div class="orbit orbit-a"></div><div class="orbit orbit-b"></div><div class="orbit orbit-c"></div><span class="art-label">6 TEAMS<br><strong>15</strong><br>MATCHES</span><span class="dot d1"></span><span class="dot d2"></span><span class="dot d3"></span><span class="dot d4"></span><span class="dot d5"></span><span class="dot d6"></span></div></section>
-<section class="metrics" id="metrics" aria-label="Competition overview"></section>
-<div class="workspace"><aside><section class="panel"><div class="section-top"><div><p class="eyebrow">01 / THE LINEUP</p><h2>Your teams</h2></div><span class="pill">6 of 6</span></div><p class="muted">Edit a name or home venue below.</p><div id="teams"></div><p class="hint">Coordinates are fictional demo venues. Travel uses straight-line round-trip estimates.</p></section>
-<section class="panel technical"><p class="eyebrow">UNDER THE HOOD</p><h2>One rotation. Every pairing.</h2><p>The circle method fixes one team and rotates the other five. Each rotation creates three matches, so every pair meets once in five rounds.</p><button id="explain" class="text-button" aria-expanded="false">See the technical choice ↗</button><div id="explanation" hidden><p>Team IDs keep fixtures stable when names change. Makeup rounds use an exact search to find the fewest rounds without double-booking a team.</p><p>Balanced home/away assignments are searched exhaustively: just 32,768 possibilities. Each team receives two or three home games.</p></div></section></aside>
-<div class="main-column"><section class="panel availability"><div class="section-top"><div><p class="eyebrow">02 / AVAILABILITY</p><h2>Catch a clash early</h2></div><span class="legend"><i></i> Unavailable</span></div><p class="muted">Select a cell to mark a team unavailable for that round.</p><div class="table-scroll" id="availability"></div><div class="resolve-row"><label class="switch-label"><input type="checkbox" id="resolve"><span>Resolve with makeup rounds</span></label><span class="hint">Extra rounds assume all teams are available.</span></div></section>
-<section class="schedule-section"><div class="section-top"><div><p class="eyebrow">03 / THE FIXTURES</p><h2>Your competition, mapped out</h2></div><button class="button secondary" id="demo">▶ Run demo</button></div><div id="demo-panel" hidden role="status"></div><div id="status" aria-live="polite"></div><div id="rounds" class="round-grid"></div></section>
-<section class="panel travel"><div class="section-top"><div><p class="eyebrow">04 / GO THE DISTANCE</p><h2>Spread the travel fairly</h2></div><button class="button primary" id="optimize">Optimize travel ↗</button></div><p class="muted">Every team gets 2–3 home games. Optimize to reduce the largest individual travel burden.</p><div id="travel"></div><p class="hint">With round trips between two venues, reversing home and away leaves total distance unchanged. Optimization balances who travels; it cannot reduce the total.</p></section>
-</div></div>
-<footer><span>Roundhouse / Small league. Complete picture.</span><button class="text-button" id="reset">Reset competition</button></footer>
-</main><div id="toast" role="status" class="toast" hidden></div><script type="module" src="app.mjs"></script>
-</body></html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#172522" />
+    <meta name="description" content="Plan a six-team competition, flag availability conflicts, and balance travel." />
+    <title>Roundhouse · Competition planner</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>

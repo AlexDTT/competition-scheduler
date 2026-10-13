@@ -1,0 +1,29 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap');
+@import 'tailwindcss';
+
+@theme {
+  --color-ink: #172522;
+  --color-muted: #6c7771;
+  --color-paper: #f5f6f0;
+  --color-line: #e1e6dd;
+  --font-sans: 'DM Sans', sans-serif;
+  --font-display: 'Space Grotesk', sans-serif;
+}
+@layer base {
+  body { @apply m-0 bg-paper font-sans text-sm text-ink; }
+  button { @apply cursor-pointer; }
+  button:disabled { @apply cursor-not-allowed opacity-50; }
+  :is(button, input, a):focus-visible { @apply outline-2 outline-offset-2 outline-green-700; }
+  h2 { @apply mt-1 font-display text-xl font-semibold tracking-tight; }
+  th { @apply px-1 py-3 text-center text-[10px] font-medium text-muted; }
+  td { @apply border-t border-line px-1 py-2; }
+}
+@layer components {
+  .eyebrow { @apply text-[10px] font-bold tracking-[1.8px] text-green-800; }
+  .description { @apply mb-5 text-xs leading-6 text-muted; }
+  .hint { @apply text-[10px] leading-5 text-muted; }
+  .button-secondary { @apply rounded-lg border border-line bg-white px-3 py-2 text-[11px] font-semibold whitespace-nowrap text-ink; }
+  .button-primary { @apply rounded-lg border border-ink bg-ink px-3 py-2 text-[11px] font-semibold whitespace-nowrap text-lime-200; }
+  .coordinate-input { @apply mt-1 w-full rounded-md border border-line px-2 py-1 text-[11px] text-muted; }
+  .coordinate-input[aria-invalid='true'] { @apply border-red-300 bg-red-50; }
+}

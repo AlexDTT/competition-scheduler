@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {defaults,fixtures,distance,orientations,makeupRounds,schedule,validCoordinates} from './core.mjs';
+import {defaults,fixtures,distance,orientations,makeupRounds,schedule,validCoordinates} from '../shared/competition.js';
 test('circle schedule covers every pairing and every team exactly once per round',()=>{
  const matches=fixtures();assert.equal(matches.length,15);assert.equal(new Set(matches.map(m=>[m.a,m.b].sort().join('-'))).size,15);
  for(let r=0;r<5;r++){const round=matches.filter(m=>m.round===r);assert.equal(round.length,3);assert.equal(new Set(round.flatMap(m=>[m.a,m.b])).size,6);}
